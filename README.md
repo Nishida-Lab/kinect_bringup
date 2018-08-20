@@ -15,3 +15,7 @@ roslaunch kinect2_bridge kinect2_bridge.launch base_name:=kinect_center
 ```
 roslaunch kinect_bringup kinect_center_streaming.launch
 ```
+### depth_method:=cpu
+```
+roslaunch kinect2_bridge kinect2_bridge.launch base_name:=kinect_center depth_method:=cpu
+```
