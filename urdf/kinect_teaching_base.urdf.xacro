@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot name="teaching_base" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find kinect_bringup)/urdf/common.xacro" />
+  <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.gazebo.xacro"/>
+
+  <link name="world"/>
+
+  <!-- add camera -->
+  <!-- Link -->
+  <link name="camera_link"/>
+
+  <!-- Joint -->
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0.057 0 0.565" rpy="${M_PI/2} ${M_PI} 0" />
+    <parent link="world"/>
+    <child link="camera_link"/>
+  </joint>
+
+  <!-- add Kinect V2 -->
+  <!-- kinect_head -->
+  <!-- Link -->
+  <xacro:kinect2_link_box_v0 name="kinect_head"/>
+  <link name="kinect_head_rgb_optical_frame"/>
+
+  <!-- Joint -->
+  <joint name="joint_kinect_head" type="fixed">
+    <!-- <origin xyz="0.15 0 0.916" rpy="0 ${M_PI/2} 0"/> -->
+    <origin xyz="0.15 0.38 0.9368" rpy="3.1416 1.5024 3.1416" />
+    <parent link="world"/>
+    <child link="kinect_head"/>
+  </joint>
+
+  <joint name="joint_rgb_kinect_head" type="fixed">
+    <origin rpy="${M_PI/2} ${M_PI} ${M_PI/2}"/>
+    <parent link="kinect_head"/>
+    <child link="kinect_head_rgb_optical_frame"/>
+  </joint>
+
+  <!-- Gazebo -->
+  <xacro:kinect_gazebo name="kinect_head"/>
+
+  <!-- add Kinect V2 -->
+  <!-- kinect_side -->
+  <!-- Link -->
+  <xacro:kinect2_link_box_v0 name="kinect_side"/>
+  <link name="kinect_side_rgb_optical_frame"/>
+
+  <!-- Joint -->
+  <joint name="joint_kinect_side" type="fixed">
+    <!-- <origin xyz="0.5484 -0.988 0.2359" rpy="-0.0001 0.131 1.6919" /> -->
+    <origin xyz="0.5422 -0.9652 0.25" rpy="-0.0002 0.2129 1.57" />
+    <parent link="world"/>
+    <child link="kinect_side"/>
+  </joint>
+
+  <joint name="joint_rgb_kinect_side" type="fixed">
+    <origin rpy="${M_PI/2} ${M_PI} ${M_PI/2}"/>
+    <parent link="kinect_side"/>
+    <child link="kinect_side_rgb_optical_frame"/>
+  </joint>
+
+  <!-- Gazebo -->
+  <xacro:kinect_gazebo name="kinect_side"/>
+
+  
+</robot>

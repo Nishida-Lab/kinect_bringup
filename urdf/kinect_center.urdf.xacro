@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot name="teaching_base" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find kinect_bringup)/urdf/common.xacro" />
+  <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.gazebo.xacro"/>
+
+  <link name="world"/>
+
+  <!-- add Kinect V2 -->
+  <!-- kinect_center -->
+  <!-- Link -->
+  <xacro:kinect2_link_box_v0 name="kinect_center"/>
+  <link name="kinect_center_rgb_optical_frame"/>
+
+  <!-- Joint -->
+  <joint name="joint_kinect_center" type="fixed">
+    <!-- <origin xyz="0.15 0.38 0.9368" rpy="3.1416 1.5024 3.1416" /> -->
+    <origin xyz="1.28 0 0.5" rpy="0 0.3982 -3.123" />
+    <parent link="world"/>
+    <child link="kinect_center"/>
+  </joint>
+
+  <joint name="joint_rgb_kinect_center" type="fixed">
+    <origin rpy="${M_PI/2} ${M_PI} ${M_PI/2}"/>
+    <parent link="kinect_center"/>
+    <child link="kinect_center_rgb_optical_frame"/>
+  </joint>
+
+  <!-- Gazebo -->
+  <xacro:kinect_gazebo name="kinect_center"/>
+
+  <!-- add Kinect V2 -->
+  <!-- kinect_side -->
+  <!-- Link -->
+  <!-- <xacro:kinect2_link_box_v0 name="kinect_side"/> -->
+  <!-- <link name="kinect_side_rgb_optical_frame"/> -->
+
+  <!-- Joint -->
+  <!-- <joint name="joint_kinect_side" type="fixed"> -->
+  <!--   <origin xyz="0.5422 -0.9652 0.25" rpy="-0.0002 0.2129 1.57" /> -->
+  <!--   <parent link="world"/> -->
+  <!--   <child link="kinect_side"/> -->
+  <!-- </joint> -->
+
+  <!-- <joint name="joint_rgb_kinect_side" type="fixed"> -->
+  <!--   <origin rpy="${M_PI/2} ${M_PI} ${M_PI/2}"/> -->
+  <!--   <parent link="kinect_side"/> -->
+  <!--   <child link="kinect_side_rgb_optical_frame"/> -->
+  <!-- </joint> -->
+
+  <!-- Gazebo -->
+  <!-- <xacro:kinect_gazebo name="kinect_side"/> -->
+
+</robot>
