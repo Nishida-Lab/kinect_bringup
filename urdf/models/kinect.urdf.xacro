@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- <robot name="sia5" xmlns:xacro="http://ros.org/wiki/xacro"> -->
+<robot name="camera" xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- File Include -->
+  <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.gazebo.xacro"/>
+
+  <link name="camera_link">
+    <inertial>
+      <mass value="1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+  </link>
+
+  <!-- add Kinect V2 -->
+  <!-- kinect -->
+  <!-- Link -->
+  <xacro:kinect2_link_box_v0 name="kinect_link"/>
+  <link name="kinect_rgb_optical_frame"/>
+
+  <!-- <!-\- Joint -\-> -->
+  <joint name="joint_kinect" type="fixed">
+    <!-- <origin xyz="0.8872 -0.6445 0.5718" rpy="-0.0087 0.5501 2.0698" /> -->
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="camera_link"/>
+    <child link="kinect_link"/>
+  </joint>
+
+  <joint name="joint_rgb_kinect" type="fixed">
+    <origin rpy="${M_PI/2} ${M_PI} ${M_PI/2}"/>
+    <parent link="kinect_link"/>
+    <child link="kinect_rgb_optical_frame"/>
+  </joint>
+
+  <!-- <!-\- Gazebo -\-> -->
+  <xacro:kinect_gazebo name="kinect"/>
+
+</robot>
