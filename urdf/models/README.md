@@ -11,7 +11,7 @@ $ roslaunch motion_planning initialization_sia5.launch
 #### 2. カメラモデルを Gazebo に登場させる
 
 ```
-$ /motoman_ws/src/kinect_bringup/urdf/models
+$cd /motoman_ws/src/kinect_bringup/urdf/models
 ```
 
 ##### urdf を使う場合
@@ -52,10 +52,10 @@ $ gz sdf -p camera.urdf > camera.sdf
 $ rqt
 ```
 
-Plugins →Topics →Message Publisher を起動し，トピック： /gazebo/set_model_object に下記の値を入力して Publish する．
+Plugins →Topics →Message Publisher を起動し，トピック： /gazebo/set_model_state に下記の値を入力して Publish する．
 
 ```
- /gazebo/set_model_object
+ /gazebo/set_model_state
    model_name: 'camera'
    pose:
     position: 
