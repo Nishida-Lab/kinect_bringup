@@ -55,7 +55,7 @@ $ rosrun kinect2_viewer kinect2_viewer kinect2 sd image
 ## Initial build of this repository
 ```
 $ cd <your_workspace>/src
-$ git clone https://github.com/TakakiNishio/kinect_bringup.git
+$ git clone https://github.com/Nishida-Lab/kinect_bringup.git
 ```
 Specify the location where you installed libfreenect2.
 ```
