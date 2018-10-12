@@ -34,7 +34,7 @@ Connect the kinect to USB3.0 port.
 $ cd <your_workspace>/src
 $ git clone https://github.com/code-iai/iai_kinect2.git
 $ cd iai_kinect2
-$ rosdep install -r –-from-paths .
+$ rosdep install -r --from-paths .
 $ cd ~/catkin_ws
 $ catkin build -DCMAKE_BUILD_TYPE=”Release”  -Dfreenect2_DIR=~/src/freenect2/lib/cmake/freenect2
 ```
