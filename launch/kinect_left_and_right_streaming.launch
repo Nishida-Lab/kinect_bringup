@@ -15,6 +15,6 @@
 
   <!-- RViz -->
   <arg name="rviz" default="true"/>
-  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="$(anon rviz)" respawn="false" output="screen" args="-d $(find kinect_bringup)/rviz/kinect_center_and_left.rviz" />
+  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="$(anon rviz)" respawn="false" output="screen" args="-d $(find kinect_bringup)/rviz/kinect_left_and_right.rviz" />
 
 </launch>
