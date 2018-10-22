@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot name="teaching_base" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find kinect_bringup)/urdf/common.xacro" />
+  <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.gazebo.xacro"/>
+
+  <link name="world"/>
+
+  <!-- add Kinect V2 -->
+  <!-- kinect_head -->
+  <!-- Link -->
+  <xacro:kinect2_link_box_v0 name="kinect_head"/>
+  <link name="kinect_head_rgb_optical_frame"/>
+
+  <!-- Joint -->
+  <joint name="joint_kinect_head" type="fixed">
+    <!-- <origin xyz="0.15 0 0.916" rpy="0 ${M_PI/2} 0"/> -->
+    <origin xyz="-0.0243 -0.0348 1.0267" rpy="0.3036 1.5239 0.3282" />
+    <parent link="world"/>
+    <child link="kinect_head"/>
+  </joint>
+
+  <joint name="joint_rgb_kinect_head" type="fixed">
+    <origin rpy="${M_PI/2} ${M_PI} ${M_PI/2}"/>
+    <parent link="kinect_head"/>
+    <child link="kinect_head_rgb_optical_frame"/>
+  </joint>
+
+  <!-- Gazebo -->
+  <xacro:kinect_gazebo name="kinect_head"/>
+
+</robot>
