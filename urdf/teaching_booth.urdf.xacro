@@ -17,7 +17,8 @@
   <joint name="joint_kinect_head" type="fixed">
     <!-- <origin xyz="0.15 0 0.916" rpy="0 ${M_PI/2} 0"/> -->
     <!-- <origin xyz="-0.0243 -0.0348 1.0267" rpy="0.3036 1.5239 0.3282" /> -->
-    <origin xyz="-0.6433 -0.0551 0.7229" rpy="-0.0646 0.9355 -0.1139" />
+    <!-- <origin xyz="-0.6433 -0.0551 0.7229" rpy="-0.0646 0.9355 -0.1139" /> -->
+    <origin xyz="-0.4027 -0.1652 0.7161" rpy="0.0052 1.008 0.0191" />
     <parent link="world"/>
     <child link="kinect_head"/>
   </joint>
