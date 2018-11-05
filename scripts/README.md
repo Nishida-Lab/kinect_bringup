@@ -13,3 +13,4 @@ $ rosrun kinect_bringup image_pixel_to_3d_point.py
 ```
 $ rosrun kinect_bringup specify_image_pixel.py 
 ```
+type key `w`,`s`,`a`,`d` on the image window.
