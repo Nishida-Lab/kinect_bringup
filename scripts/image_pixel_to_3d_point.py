@@ -79,9 +79,9 @@ class ImagePixelTo3DPointNode:
         marker_data.color.b = 0.0
         marker_data.color.a = 1.0
 
-        marker_data.scale.x = 0.05
-        marker_data.scale.y = 0.05
-        marker_data.scale.z = 0.05
+        marker_data.scale.x = 0.06
+        marker_data.scale.y = 0.06
+        marker_data.scale.z = 0.06
 
         marker_data.type = 2
 

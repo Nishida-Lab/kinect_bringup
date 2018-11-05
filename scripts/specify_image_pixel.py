@@ -7,20 +7,20 @@ from cv_bridge import CvBridge, CvBridgeError
 import cv2
 
 
-class ClickHereNode:
+class SpecifyPixelNode:
 
     def __init__(self):
-        rospy.init_node('ClickHere', anonymous=True)
+        rospy.init_node('SpecifyPixel', anonymous=True)
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber("kinect_head/qhd/image_color", Image, self.callback, queue_size=1, buff_size=2**24)
         self.pixel_pub = rospy.Publisher('image_pixel', Int32MultiArray, queue_size=1)
-        rospy.loginfo("Initialized ClickHereNode.")
+        rospy.loginfo("Initialized SpecifyPixelNode.")
         self.window_name = "image"
         self.pixel_point = Int32MultiArray()
         self.pixel_point.data = [0,0]
         self.offset = 5
-        self.u = 480
-        self.v = 270
+        self.u = 480 # qhd 960/2
+        self.v = 270 # qhd 540/2
 
     def mouseParam(self, window_name):
         self.mouseEvent = {"x":None, "y":None, "event":None, "flags":None}
@@ -32,7 +32,7 @@ class ClickHereNode:
     def callback(self, data):
         try:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
-            cv2.circle(cv_image, (self.u, self.v), 10, (0, 165, 255), -1)
+            cv2.circle(cv_image, (self.u, self.v), 15, (0, 165, 255), -1)
             cv2.imshow(self.window_name, cv_image)
             key = cv2.waitKey(3)
             if key & 0xFF == ord("d"):
@@ -47,7 +47,6 @@ class ClickHereNode:
             self.pixel_point.data[0] = self.u
             self.pixel_point.data[1] = self.v
 
-            print self.pixel_point.data
             self.pixel_pub.publish(self.pixel_point)
  
         except CvBridgeError as e:
@@ -55,7 +54,7 @@ class ClickHereNode:
 
 
 def main():
-    ClickHereNode()
+    SpecifyPixelNode()
     try:
         rospy.spin()
     except KeyboardInterrupt:
