@@ -106,7 +106,7 @@ def main():
     try:
         rospy.spin()
     except KeyboardInterrupt:
-        rospy.loginfo("Initialized Get3dPointNode.")
+        rospy.loginfo("Shutting Down.")
 
 
 if __name__ == '__main__':
