@@ -83,7 +83,8 @@ from math import *
 class InteractiveMarkerPoseStampedPublisher():
 
     def __init__(self, from_frame, to_frame, position, orientation):
-        self.server = InteractiveMarkerServer("posestamped_im")
+        self.server = InteractiveMarkerServer(to_frame)
+        # self.server = InteractiveMarkerServer("posestamped_im")
         o = orientation
         r, p, y = euler_from_quaternion([o.x, o.y, o.z, o.w])
         rospy.loginfo("Publishing transform and PoseStamped from: " +
